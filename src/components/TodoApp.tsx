@@ -18,6 +18,16 @@ const TodoApp = () => {
       setTodos([...todos,newTask]);
       setNewTodo("");
     }
+
+    const toggleTodo = (id:number) => {
+      setTodos(
+        todos.map((todo) =>
+        todo.id == id ? {
+          ...todo,completed: !todo.completed 
+        }:todo)
+      )
+    }
+
   return (
     <>
       <h1>Todoリスト</h1>
@@ -25,7 +35,12 @@ const TodoApp = () => {
       <button onClick={handleAddTodo}>追加</button>
       <ul>
         {todos.map((todo) =>(
-          <li key={todo.id}>{todo.text}</li>
+          <li key={todo.id}>
+            <input type="checkbox" checked={todo.completed} onChange={()=> toggleTodo(todo.id)} 
+             />
+             <span style={{textDecoration: todo.completed ? "line-through" :"none"}}>       
+               {todo.text}</span>
+          </li>
         ))}
       </ul>
     </>
