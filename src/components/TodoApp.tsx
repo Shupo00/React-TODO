@@ -28,11 +28,14 @@ const TodoApp = () => {
       )
     }
 
+    const incompleteTodos:number = todos.filter((todo) => !todo.completed).length
+
   return (
     <>
       <h1>Todoリスト</h1>
       <input type="text" value={newTodo} id="newTodo" onChange={(e) => setNewTodo(e.target.value)}/>
       <button onClick={handleAddTodo}>追加</button>
+      <p>未完了のタスク: {incompleteTodos}件</p>
       <ul>
         {todos.map((todo) =>(
           <li key={todo.id}>
